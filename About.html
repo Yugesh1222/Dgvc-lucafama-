@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Lucafama - DG Vaishnav College</title> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: #f9f9f9; }
+
+    /* Navbar */
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: #1b1b1b; padding: 10px 0; z-index: 12;
+    }
+    nav .menu {
+      max-width: 1250px; margin: auto; display: flex;
+      align-items: center; justify-content: space-between; padding: 0 20px;
+    }
+    .menu .logo a { color: #fff; font-size: 28px; font-weight: 600; text-decoration: none; }
+    .menu ul { display: flex; gap: 10px; }
+    .menu ul li { list-style: none; }
+    .menu ul li a {
+      color: #fff; font-size: 16px; font-weight: 500;
+      padding: 6px 12px; border-radius: 5px; text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .menu ul li a:hover, .menu ul li a.active { background: #fff; color: black; }
+
+    /* Slider */
+    .slider-container {
+      max-width: 1200px; margin: 120px auto 50px;
+      position: relative; overflow: hidden; border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2); background: #000;
+    }
+    .slider-wrapper { display: flex; transition: transform 0.5s ease; }
+    .slide { min-width: 100%; position: relative; }
+    .slide img { width: 100%; height: 400px; object-fit: cover; }
+    .slide-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: white; padding: 40px 20px 20px;
+    }
+    .slide-content h3 { font-size: 24px; margin-bottom: 10px; }
+    .slide-content p { font-size: 16px; opacity: 0.9; }
+    .slider-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.5); color: white; border: none;
+      padding: 15px; cursor: pointer; font-size: 18px;
+      border-radius: 50%; transition: background 0.3s ease;
+    }
+    .slider-nav:hover { background: rgba(0,0,0,0.8); }
+    .prev { left: 20px; }
+    .next { right: 20px; }
+    .slider-dots { text-align: center; margin-top: 20px; }
+    .dot {
+      height: 15px; width: 15px; margin: 0 5px;
+      background-color: #bbb; border-radius: 50%; display: inline-block;
+      cursor: pointer; transition: background-color 0.3s ease;
+    }
+    .dot.active, .dot:hover { background-color: #1b1b1b; }
+
+    /* About Content */
+    .content-section { max-width: 1200px; margin: 50px auto; padding: 20px; }
+    .about-header { text-align: center; margin-bottom: 40px; }
+    .about-header h1 { font-size: 42px; color: #333; margin-bottom: 15px; }
+    .about-header p { font-size: 18px; color: #666; }
+    .about-text { padding: 20px; }
+    .about-text h2 { font-size: 28px; color: #333; margin-bottom: 20px; }
+    .about-text p { font-size: 16px; line-height: 1.6; color: #555; margin-bottom: 15px; }
+
+    /* Leadership */
+    .leadership-section { background: #f9f9f9; padding: 50px 20px; }
+    .leadership-header { text-align: center; margin-bottom: 40px; }
+    .leadership-header h2 { font-size: 36px; color: #333; }
+    .leadership-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px; margin-bottom: 40px;
+    }
+    .leader-card {
+      background: #fff; border-radius: 15px; padding: 30px;
+      text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .leader-card:hover { transform: translateY(-10px); }
+    .leader-card img {
+      width: 150px; height: 150px; border-radius: 50%;
+      object-fit: cover; margin-bottom: 20px; border: 5px solid #1b1b1b;
+    }
+    .leader-card h3 { font-size: 24px; margin-bottom: 10px; color: #333; }
+    .leader-card .position { font-size: 16px; font-weight: 600; margin-bottom: 15px; color: #1b1b1b; }
+
+    /* Team */
+    .team-section { margin-top: 40px; }
+    .team-header { text-align: center; margin-bottom: 40px; }
+    .team-header h2 { font-size: 32px; color: #333; }
+    .team-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .team-card {
+      background: #fff; border-radius: 10px; padding: 20px; text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease;
+    }
+    .team-card:hover { transform: translateY(-5px); }
+    .team-card img {
+      width: 100px; height: 100px; border-radius: 50%;
+      object-fit: cover; margin-bottom: 15px; border: 3px solid #1b1b1b;
+    }
+    .team-card h4 { font-size: 18px; margin-bottom: 5px; color: #333; }
+    .team-card .position { font-size: 14px; font-weight: 600; color: #1b1b1b; }
+
+    /* Mission & Vision */
+    .mission-vision { background: #f9f9f9; padding: 50px 20px; margin-top: 40px; }
+    .mission-vision-container {
+      max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 20px;
+    }
+    .mission, .vision {
+      flex: 1; min-width: 300px; padding: 30px; background: #fff;
+      border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    .mission h2, .vision h2 { font-size: 24px; margin-bottom: 15px; display: flex; align-items: center; }
+    .mission h2 i, .vision h2 i { margin-right: 10px; color: #1b1b1b; }
+    .mission p, .vision p { font-size: 16px; line-height: 1.6; color: #555; }
+
+    /* Social Links */
+    .social-section { text-align: center; margin-top: 40px; padding: 30px; background: #1b1b1b; color: white; }
+    .social-section h2 { margin-bottom: 20px; }
+    .social-links { display: flex; justify-content: center; gap: 20px; }
+    .social-links a {
+      color: white; font-size: 24px; padding: 10px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); transition: all 0.3s ease;
+    }
+    .social-links a:hover { background: rgba(255,255,255,0.2); transform: scale(1.1); }
+
+    @media(max-width:768px) {
+      .slider-nav { display: none; }
+      .slide img { height: 250px; }
+      .mission-vision-container { flex-direction: column; }
+    }
+              /* College Header */
+    .college-header {
+      width: 100%;
+      background: #fff;
+      text-align: center;
+      border-bottom: 2px solid #ddd;
+    }
+    .college-header img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- College Header -->
+  <div class="college-header">
+    <img src="header_new.jpg" alt="DG Vaishnav College Header">
+  </div>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="menu">
+      <div class="logo"><a href="#">Lucafama</a></div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="event.html">Event</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Slider -->
+  <div class="slider-container">
+    <div class="slider-wrapper" id="slider">
+      <div class="slide"><img src="lucahome.png"><div class="slide-content"><h3>Cultural Festival 2023</h3><p>A vibrant celebration of arts, culture, and creativity.</p></div></div>
+      <div class="slide"><img src="business plan.jpg"><div class="slide-content"><h3>Business Plan Competition</h3><p>Students pitched innovative ideas with mentorship.</p></div></div>
+      <div class="slide"><img src="ipl auction.jpg"><div class="slide-content"><h3>Tech Symposium</h3><p>Workshops, competitions, and keynote speakers.</p></div></div>
+      <div class="slide"><img src="quiz.jpg"><div class="slide-content"><h3>Sports Meet</h3><p>Inter-departmental competition promoting fitness.</p></div></div>
+    </div>
+    <button class="slider-nav prev" onclick="changeSlide(-1)">❮</button>
+    <button class="slider-nav next" onclick="changeSlide(1)">❯</button>
+  </div>
+  <div class="slider-dots">
+    <span class="dot active" onclick="currentSlide(0)"></span>
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+  </div>
+
+  <!-- About Content -->
+  <div class="content-section">
+    <div class="about-header">
+      <h1>About Lucafama Forum</h1>
+      <p>The official student forum of DG Vaishnav College</p>
+    </div>
+    <div class="about-text">
+      <h2>Who We Are</h2>
+      <p>Lucafama is the premier student forum at DG Vaishnav College, dedicated to fostering student engagement, organizing cultural and academic events, and providing a platform for students to showcase their talents and skills.</p>
+      <p>Established with the vision of creating a vibrant campus community, Lucafama has been at the forefront of organizing inter-collegiate competitions, workshops, seminars, and cultural festivals.</p>
+    </div>
+    <div class="about-text">
+      <h2>About DG Vaishnav College</h2>
+      <p>DG Vaishnav College, established in 1964, is one of the premier institutions in Chennai. It offers UG & PG programs in Arts, Science, and Commerce, with a strong focus on holistic student development.</p>
+    </div>
+  </div>
+
+  <!-- Leadership -->
+  <div class="leadership-section">
+    <div class="leadership-header">
+      <h2>Our Leadership</h2>
+      <p>Meet the distinguished leaders who guide and support our institution</p>
+    </div>
+    <div class="leadership-grid">
+      <div class="leader-card"><img src="https://via.placeholder.com/150x150/333/fff?text=Principal"><h3>Dr. [Principal Name]</h3><div class="position">Principal</div><p>Leading DGVC with vision and dedication.</p></div>
+      <div class="leader-card"><img src="https://via.placeholder.com/150x150/333/fff?text=HOD"><h3>Dr. [HOD Name]</h3><div class="position">Head of Department</div><p>Guiding academic excellence and student growth.</p></div>
+    </div>
+
+    <!-- Team -->
+    <div class="team-section">
+      <div class="team-header"><h2>Lucafama Team</h2><p>Our dedicated student team working to make events successful</p></div>
+      <div class="team-grid">
+        <div class="team-card"><img src="https://via.placeholder.com/100x100/1b1b1b/fff?text=Pres"><h4>[President Name]</h4><div class="position">President</div></div>
+        <div class="team-card"><img src="https://via.placeholder.com/100x100/1b1b1b/fff?text=VP"><h4>[Vice President Name]</h4><div class="position">Vice President</div></div>
+        <div class="team-card"><img src="https://via.placeholder.com/100x100/1b1b1b/fff?text=Sec"><h4>[Secretary Name]</h4><div class="position">Secretary</div></div>
+        <div class="team-card"><img src="https://via.placeholder.com/100x100/1b1b1b/fff?text=CS"><h4>[Chief Secretary Name]</h4><div class="position">Chief Secretary</div></div>
+        <div class="team-card"><img src="https://via.placeholder.com/100x100/1b1b1b/fff?text=Treas"><h4>[Treasurer Name]</h4><div class="position">Treasurer</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mission & Vision -->
+  <div class="mission-vision">
+    <div class="mission-vision-container">
+      <div class="mission"><h2><i class="fas fa-bullseye"></i> Our Mission</h2><p>To create a dynamic and inclusive platform that enhances student life through engaging events, leadership, and community.</p></div>
+      <div class="vision"><h2><i class="fas fa-eye"></i> Our Vision</h2><p>To be the most vibrant forum that empowers students to discover potential and contribute meaningfully to campus life.</p></div>
+    </div>
+  </div>
+
+  <!-- Social -->
+  <div class="social-section">
+    <h2>Follow Us</h2>
+    <div class="social-links">
+      <a href="https://instagram.com/lucafama_dgvc" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+  </div>
+
+  <script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
+    const sliderWrapper = document.querySelector(".slider-wrapper");
+    const totalSlides = slides.length;
+
+    function updateSlide() {
+      sliderWrapper.style.transform = `translateX(${-slideIndex * 100}%)`;
+      dots.forEach((dot, i) => dot.classList.toggle("active", i === slideIndex));
+    }
+    function changeSlide(n) {
+      slideIndex = (slideIndex + n + totalSlides) % totalSlides;
+      updateSlide();
+    }
+    function currentSlide(n) {
+      slideIndex = n;
+      updateSlide();
+    }
+    setInterval(() => changeSlide(1), 5000); // auto slide
+    updateSlide();
+  </script>
+</body>
+</html>
